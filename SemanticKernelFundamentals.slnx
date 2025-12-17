@@ -1,0 +1,10 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Packages.props" />
+    <File Path="solution_code_snippets.snippet" />
+  </Folder>
+  <Project Path="src/00_Prompt_Plugins_Basic/00_Prompt_Plugins_Basic.csproj" />
+  <Project Path="src/01_Native_Functions/01_Native_Functions.csproj" Id="75b5b5ab-b050-45eb-ae52-122f23998ba0" />
+  <Project Path="src/02_Prompt_Templates_Handlebars/02_Prompt_Templates_Handlebars.csproj" Id="704f4e31-52c7-475f-86f4-2bd83e515cde" />
+  <Project Path="src/03_Chain_Functions/03_Chain_Functions.csproj" Id="083b664d-c68c-4406-b263-ffdc6d81f058" />
+</Solution>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <RootNamespace>_03_Chain_Functions</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Plugins\RoleTalk\Policeman\config.json" />
+    <None Remove="Plugins\RoleTalk\Policeman\skprompt.txt" />
+    <None Remove="Plugins\RoleTalk\Scientist\config.json" />
+    <None Remove="Plugins\RoleTalk\Scientist\skprompt.txt" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Plugins\RoleTalk\Policeman\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\RoleTalk\Policeman\skprompt.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\RoleTalk\Scientist\config.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Plugins\RoleTalk\Scientist\skprompt.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+</Project>

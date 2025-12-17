@@ -1,0 +1,18 @@
+﻿{
+  "schema": 1,
+  "description": "Summarize given text or any text document",
+  "execution_settings": {
+    "default": {
+      "max_completion_tokens": 512,
+      "temperature": 1.0
+    }
+  },
+  "input_variables": [
+    {
+      "name": "input",
+      "description": "Text to summarize",
+      "default": "",
+      "is_required": true
+    }
+  ]
+}

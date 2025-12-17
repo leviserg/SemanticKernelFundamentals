@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <Title>AI service configuration</Title>
+            <Author>Serhii Levytskyi</Author>
+            <Shortcut>kernel</Shortcut>
+            <Description>Configures the kernel to use Azure OpenAI service.</Description>
+        </Header>
+        <Snippet>
+            <Code Language="CSharp">
+                <![CDATA[public static async Task Execute()
+        {
+            try
+			{
+			    var apiKey = Environment.GetEnvironmentVariable("AZURE_OPENAI_KEY")!;
+                var endpoint = Environment.GetEnvironmentVariable("AZURE_OPENAI_ENDPOINT")!;
+                var name = Environment.GetEnvironmentVariable("AZURE_OPENAI_DEPLOYMENT_NAME")!;
+
+                var builder = Kernel.CreateBuilder();
+
+                builder.AddAzureOpenAIChatCompletion(
+                    deploymentName: name,
+                    endpoint: endpoint,
+                    apiKey: apiKey);
+
+                // builder.Plugins.AddFromType<PluginClassTypeHere>();
+
+                var kernel = builder.Build();
+			
+			    // kernel.ImportPluginFromPromptDirectory(pluginsDirectory);
+			    // var promptFunction = kernel.CreateFunctionFromPrompt(prompt);
+
+                var arguments = new KernelArguments
+                {
+                    // { "value", inputNumber }
+                };
+
+                var result = await kernel.InvokeAsync(<PluginName>,<FunctionName>, arguments);
+
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine($$"AI says: {result}");
+                Console.ForegroundColor = ConsoleColor.White;
+			}
+            catch (Exception ex)
+            {
+			    Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine($$"Error: {ex.Message}");
+                Console.ForegroundColor = ConsoleColor.White;
+            }
+        }]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

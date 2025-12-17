@@ -1,0 +1,18 @@
+{
+  "schema": 1,
+  "description": "Respond to a question or statement as a Police Officer",
+  "execution_settings": {
+    "default": {
+      "max_completion_tokens": 512,
+      "temperature": 1.0
+    }
+  },
+  "input_variables": [
+    {
+      "name": "input",
+      "description": "Text to respond to",
+      "default": "",
+      "is_required": true
+    }
+  ]
+}
