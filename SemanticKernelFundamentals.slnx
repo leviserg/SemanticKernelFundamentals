@@ -9,4 +9,5 @@
   <Project Path="src/03_Chain_Functions/03_Chain_Functions.csproj" Id="083b664d-c68c-4406-b263-ffdc6d81f058" />
   <Project Path="src/04_Planners_Function_Calling/04_Planners_Function_Calling.csproj" Id="620cbb8f-5cfe-4cbe-a323-a5dfc21e5041" />
   <Project Path="src/05_Planners_Handlebars/05_Planners_Handlebars.csproj" Id="ff363862-a4d6-4dee-abf6-3d42745742d0" />
+  <Project Path="src/devops-ai-assistant/devops-ai-assistant.csproj" />
 </Solution>
