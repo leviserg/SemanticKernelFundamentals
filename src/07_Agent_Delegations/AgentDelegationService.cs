@@ -1,6 +1,4 @@
 ﻿using _07_Agent_Delegations.Plugins;
-using Microsoft.Agents.AI;
-using Microsoft.Extensions.AI;
 using Microsoft.SemanticKernel;
 using Microsoft.SemanticKernel.Agents;
 using Microsoft.SemanticKernel.ChatCompletion;
@@ -38,23 +36,18 @@ namespace _07_Agent_Delegations
                 var service = new AgentDelegationService();
 
                 await service.AddYamlAgent(kernel, policeAgentPath);
-                await service.AddYamlAgent(kernel, toolAgentPath);
 
                 var menuAgent = new ChatCompletionAgent
                 {
                     Name = "MenuAgent",
-                    Instructions = "You are a helpful assistant that helps users choose the right agent for their requests based on a provided menu of agents and their descriptions. " +
-                                   "When a user makes a request, analyze it carefully and select the most appropriate agent from the menu to handle the request effectively. " +
-                                   "Respond with the name of the selected agent only.",
+                    Instructions = $"Use instructions from available plugin {nameof(MenuPlugin)}-{nameof(MenuPlugin.GetMenu)} and {nameof(MenuPlugin)}-{nameof(MenuPlugin.GetItemPrice)}.",
                     Kernel = kernel,
-                    Description = "An agent that selects the appropriate agent based on user requests and a menu of available agents.",
-                    Arguments = new KernelArguments(new PromptExecutionSettings()
-                    {
-                        FunctionChoiceBehavior = FunctionChoiceBehavior.Auto()
-                    })
+                    Description = "Gets menu info."
                 };
 
                 service.AddAgent(menuAgent);
+
+                var toolAgent = await service.AddYamlAgent(kernel, toolAgentPath);
 
                 var messages = new string[]
                 {
@@ -64,17 +57,10 @@ namespace _07_Agent_Delegations
                       "Thank you",
                 };
 
-                // ---------- rendering chat with agents ----------
-
-                foreach (var agent in service._agents)
+                foreach (var message in messages)
                 {
-                    foreach (var message in messages)
-                    {
-                        await ChatWithAgent(agent, message);
-                    }
-                    Console.WriteLine(new string('-', 50));
+                    await service.ChatWithDelegation(toolAgent!, message);
                 }
-
 
                 Console.ForegroundColor = ConsoleColor.White;
             }
@@ -86,13 +72,12 @@ namespace _07_Agent_Delegations
             }
         }
 
-        private async Task AddYamlAgent(Kernel kernel, string yamlPath)
+        private async Task<ChatCompletionAgent> AddYamlAgent(Kernel kernel, string yamlPath)
         {
 
             if (!File.Exists(yamlPath))
             {
-                Console.WriteLine($"YAML file not found at: {yamlPath}");
-                return;
+                throw new Exception($"YAML file not found at: {yamlPath}");
             }
 
             var yamlContent = await File.ReadAllTextAsync(yamlPath);
@@ -107,7 +92,7 @@ namespace _07_Agent_Delegations
             var description = yamlData.ContainsKey("description") ? yamlData["description"].ToString() : "";
             var template = yamlData.ContainsKey("template") ? yamlData["template"].ToString() : "";
 
-            var yamlAgent = new ChatCompletionAgent
+            var yamlAgent = new ChatCompletionAgent()
             {
                 Name = agentName!,
                 Instructions = template!,
@@ -116,22 +101,22 @@ namespace _07_Agent_Delegations
             };
 
             AddAgent(yamlAgent);
+
+            return yamlAgent;
         }
 
-        private static async Task ChatWithAgent(ChatCompletionAgent agent, string userMessage)
+        private async Task ChatWithDelegation(ChatCompletionAgent agent, string userMessage)
         {
+            Console.WriteLine($"\nUser: {userMessage}");
+
             var chatHistory = new ChatHistory();
             chatHistory.AddUserMessage(userMessage);
-
-            Console.WriteLine($"User: {userMessage}");
 
             await foreach (ChatMessageContent message in agent.InvokeAsync(chatHistory))
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine($"{agent.Name}: {message.Content}");
                 Console.ForegroundColor = ConsoleColor.White;
-
-                chatHistory.Add(message);
             }
         }
 
