@@ -56,7 +56,8 @@ namespace _03_Chain_Functions.TemplateFunctions
 
                 var arguments = new KernelArguments
                 {
-                    { "input", question }
+                    { "input", question },
+                    { "style", "casual" }
                 };
                 var result = await kernel.InvokeAsync(chainingFunctionsWithHandlebarsFunction, arguments);
 

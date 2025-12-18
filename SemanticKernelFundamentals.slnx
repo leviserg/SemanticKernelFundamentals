@@ -7,4 +7,6 @@
   <Project Path="src/01_Native_Functions/01_Native_Functions.csproj" Id="75b5b5ab-b050-45eb-ae52-122f23998ba0" />
   <Project Path="src/02_Prompt_Templates_Handlebars/02_Prompt_Templates_Handlebars.csproj" Id="704f4e31-52c7-475f-86f4-2bd83e515cde" />
   <Project Path="src/03_Chain_Functions/03_Chain_Functions.csproj" Id="083b664d-c68c-4406-b263-ffdc6d81f058" />
+  <Project Path="src/04_Planners_Function_Calling/04_Planners_Function_Calling.csproj" Id="620cbb8f-5cfe-4cbe-a323-a5dfc21e5041" />
+  <Project Path="src/05_Planners_Handlebars/05_Planners_Handlebars.csproj" Id="ff363862-a4d6-4dee-abf6-3d42745742d0" />
 </Solution>
