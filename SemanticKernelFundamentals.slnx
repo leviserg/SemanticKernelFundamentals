@@ -11,5 +11,6 @@
   <Project Path="src/05_Planners_Handlebars/05_Planners_Handlebars.csproj" Id="ff363862-a4d6-4dee-abf6-3d42745742d0" />
   <Project Path="src/06_Craft_Agents_CodeAndYaml/06_Craft_Agents_CodeAndYaml.csproj" Id="151f2b81-380c-42d8-829b-d80764f1409d" />
   <Project Path="src/07_Agent_Delegations/07_Agent_Delegations.csproj" Id="ef1a5dc9-fc36-476d-9de3-b9679be08669" />
+  <Project Path="src/08_Agent_Collaborations/08_Agent_Collaborations.csproj" Id="8ce2dec2-b23b-435f-aa5f-60a769916df3" />
   <Project Path="src/devops-ai-assistant/devops-ai-assistant.csproj" />
 </Solution>
