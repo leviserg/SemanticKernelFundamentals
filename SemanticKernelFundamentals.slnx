@@ -13,5 +13,6 @@
   <Project Path="src/07_Agent_Delegations/07_Agent_Delegations.csproj" Id="ef1a5dc9-fc36-476d-9de3-b9679be08669" />
   <Project Path="src/08_Agent_Collaborations/08_Agent_Collaborations.csproj" Id="8ce2dec2-b23b-435f-aa5f-60a769916df3" />
   <Project Path="src/09_Memories_Practice/09_Memories_Practice.csproj" Id="61988a18-5bad-4163-8db5-51e526cb7e7b" />
+  <Project Path="src/10_Completion_Search_Plugin/10_Completion_Search_Plugin.csproj" Id="c92adf74-188b-4a05-903d-1d7e60831084" />
   <Project Path="src/devops-ai-assistant/devops-ai-assistant.csproj" />
 </Solution>
